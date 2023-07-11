@@ -1,0 +1,14 @@
+entertainment
+general
+health
+science
+sports
+technology
+{!this.state.loading && <div className="d-flex justify-content-between m-5">
+            <div>
+            <button disabled = {this.state.page>=2?false:true} type="button" className="btn btn-dark" onClick = {this.updateNews(-1)}>{this.state.page>=2? <span>&larr; Previous</span>:"First Page"}</button>
+            </div>
+            <div>
+            <button disabled ={(this.state.page+1)<Math.ceil(this.state.totalResults/this.props.pageSize)?false:true}type="button" className="btn btn-dark" onClick = {this.updateNews(1)}>{this.state.page+1<Math.ceil(this.state.totalResults/this.props.pageSize)?<span>Next &rarr;</span>:"Last Page"}</button>
+            </div>
+            </div>}
