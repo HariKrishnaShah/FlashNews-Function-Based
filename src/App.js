@@ -7,11 +7,13 @@ import {
   Routes,
   Route
 } from "react-router-dom";
-
 const App = ()=>
 {
-  let apiKey = process.env.REACT_APP_API_KEY;;
-  let pageSize = 5;
+  const apiKeyString = process.env.REACT_APP_API_KEYS;
+  const apiKeyarr = apiKeyString.split(',');
+  const randomNumber = Math.floor(Math.random() * ((apiKeyarr.length-1) - 0 + 1)) + 0;
+  let apiKey = apiKeyarr[randomNumber];
+  let pageSize = 10;
   const[progress, setProgress] = useState(0);
 
   let changeProgress = (newProgress)=>

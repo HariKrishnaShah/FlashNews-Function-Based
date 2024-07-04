@@ -22,14 +22,15 @@ const News = (props) => {
 
   const updateNews = async (newPage) => {
     props.setProgress(10);
-    const url = `https://newsapi.org/v2/top-headlines?apiKey=${props.apiKey}&page=${page+newPage}&pageSize=${props.pageSize}&category=${props.category}&country=in`;
+  const proxyUrl = "https://cors-anywhere.herokuapp.com/"
+const url = `${proxyUrl}https://newsapi.org/v2/top-headlines?apiKey=${props.apiKey}&page=${page+newPage}&pageSize=${props.pageSize}&category=${props.category}&country=in`;
+    // const url = `https://newsapi.org/v2/top-headlines?apiKey=${props.apiKey}&page=${page+newPage}&pageSize=${props.pageSize}&category=${props.category}&country=in`;
     props.setProgress(20);
     let data = await fetch(url);
     props.setProgress(60);
     setPage(page+newPage);
     let parsedData = await data.json();
     props.setProgress(80);
-    console.log(parsedData);
     setArticles(articles.concat(parsedData.articles));
     setTotalResults(parsedData.totalResults);
     props.setProgress(100);
