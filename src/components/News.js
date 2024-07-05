@@ -21,12 +21,16 @@ const News = (props) => {
   const [totalResults, setTotalResults] = useState();
 
   const updateNews = async (newPage) => {
-    props.setProgress(10);
-  const proxyUrl = "https://cors-anywhere.herokuapp.com/"
-const url = `${proxyUrl}https://newsapi.org/v2/top-headlines?apiKey=${props.apiKey}&page=${page+newPage}&pageSize=${props.pageSize}&category=${props.category}&country=in`;
-    // const url = `https://newsapi.org/v2/top-headlines?apiKey=${props.apiKey}&page=${page+newPage}&pageSize=${props.pageSize}&category=${props.category}&country=in`;
-    props.setProgress(20);
-    let data = await fetch(url);
+//     props.setProgress(10);
+//   const proxyUrl = "https://cors-anywhere.herokuapp.com/"
+// const url = `${proxyUrl}https://newsapi.org/v2/top-headlines?apiKey=${props.apiKey}&page=${page+newPage}&pageSize=${props.pageSize}&category=${props.category}&country=in`;
+//     props.setProgress(20);
+//     let data = await fetch(url);
+props.setProgress(10);
+const proxyUrl = "https://api.allorigins.win/raw?url=";
+const url = `${proxyUrl}${encodeURIComponent(`https://newsapi.org/v2/top-headlines?apiKey=${props.apiKey}&page=${page + newPage}&pageSize=${props.pageSize}&category=${props.category}&country=in`)}`;
+
+let data = await fetch(url);
     props.setProgress(60);
     setPage(page+newPage);
     let parsedData = await data.json();
